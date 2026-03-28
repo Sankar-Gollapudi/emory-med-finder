@@ -53,7 +53,7 @@ def merge(github_db: Path = GITHUB_DB, prospect_db: Path = PROSPECT_DB):
             cursor = dst.execute(
                 """INSERT INTO companies (name, domain, industry, size, state, created_at, updated_at)
                    VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)""",
-                (sc["name"], sc["domain"], sc["industry"], sc["size"], sc.get("state"), sc["created_at"]),
+                (sc["name"], sc["domain"], sc["industry"], sc["size"], sc["state"] if "state" in sc.keys() else None, sc["created_at"]),
             )
             company_map[sc["id"]] = cursor.lastrowid
             companies_added += 1
