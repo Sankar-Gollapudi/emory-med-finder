@@ -1,5 +1,24 @@
 [
   {
+    "company_name": "Weill Cornell Medicine",
+    "domain": "weill.cornell.edu",
+    "industry": "Medical Education",
+    "size": "1001-5000",
+    "city": "New York",
+    "state": "NY",
+    "suggested_title": "Paul Young - MD-PhD Candidate, Tri-Institutional Program, Rockefeller University",
+    "prospect_notes": "Paul G. Young received his B.S. in Biology from Emory University in 2018. In 2020 he joined the prestigious Weill Cornell/Rockefeller/Sloan Kettering Tri-Institutional MD-PhD Program. In 2022 he joined the Jue Chen Lab at The Rockefeller University to begin his thesis work on membrane transport proteins, specifically the cystic fibrosis transmembrane conductance regulator (CFTR) using cryo-EM structural biology. He has published first-author papers in PNAS (2024) and Nature Communications (2025) on structural studies of CFTR inhibition, demonstrating exceptional productivity as an MD-PhD trainee. His work directly bridges structural biology with therapeutic relevance for cystic fibrosis.",
+    "_enrichment": {
+      "found": true,
+      "first_name": "Paul",
+      "last_name": "Young",
+      "title": "MD-PhD Candidate",
+      "email": "",
+      "source_url": "https://lab.rockefeller.edu/chen/members",
+      "confidence": "high"
+    }
+  },
+  {
     "company_name": "UC San Diego School of Medicine",
     "domain": "medschool.ucsd.edu",
     "industry": "Medical Education",
