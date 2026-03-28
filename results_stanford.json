@@ -1,0 +1,40 @@
+[
+  {
+    "company_name": "Stanford University School of Medicine",
+    "domain": "med.stanford.edu",
+    "industry": "Medical Education",
+    "size": "1001-5000",
+    "city": "Stanford",
+    "state": "CA",
+    "suggested_title": "Jonathan Lin - Vitreoretinal Surgery Fellow at Stanford/Byers Eye Institute",
+    "prospect_notes": "Jonathan Lin graduated summa cum laude from Emory University with a BS in Neuroscience and Behavioral Biology and a BA in Music (Violin), where he was a Robert W. Woodruff Scholar and Barry M. Goldwater Scholar, also a member of the Phi Beta Kappa, Nu Rho Psi, and Phi Sigma honor societies. He earned his MD/PhD in Neuroscience from Washington University School of Medicine in St. Louis, completing his PhD thesis on the pathogenesis of retinal neurodegeneration under Dr. Rajendra Apte. He completed his Ophthalmology residency at Harvard Medical School/Mass Eye and Ear and is currently a Vitreoretinal Surgery Fellow at the Byers Eye Institute at Stanford University School of Medicine. He is a physician-scientist focused on developing novel therapeutic approaches for blinding diseases, and is a 2025 M. Gilbert Grand ASRS Vitreoretinal Fellowship Award recipient.",
+    "_enrichment": {
+      "found": true,
+      "first_name": "Jonathan",
+      "last_name": "Lin",
+      "title": "Vitreoretinal Surgery Fellow at Byers Eye Institute",
+      "email": "",
+      "source_url": "https://www.linkedin.com/in/jonatlin/",
+      "confidence": "high"
+    }
+  },
+  {
+    "company_name": "Stanford University School of Medicine",
+    "domain": "med.stanford.edu",
+    "industry": "Medical Education",
+    "size": "1001-5000",
+    "city": "Stanford",
+    "state": "CA",
+    "suggested_title": "Elise Withers - MS Student in Human Genetics & Genetic Counseling at Stanford Medicine",
+    "prospect_notes": "Elise Withers graduated from Emory University in 2022 with a B.S. in Biology and a minor in Anthropology. At Emory, she served as a supplemental instructor for BIO142 (Advanced Topics in Genetics and Molecular Biology). She went on to the Master's Program in Human Genetics & Genetic Counseling at Stanford University School of Medicine, coming from Los Altos, California. Prior to Stanford, she gained clinical experience at Columbia University Irving Medical Center coordinating referrals for neurogenetics research projects and supporting the Precision Neurotherapeutics Program and Columbia BioBank. She also conducted bioinformatics research at the NIAID Vaccine Research Center at NIH. Her interests include reproductive genetics and genetic counseling.",
+    "_enrichment": {
+      "found": true,
+      "first_name": "Elise",
+      "last_name": "Withers",
+      "title": "MS Candidate in Human Genetics & Genetic Counseling",
+      "email": "",
+      "source_url": "https://www.linkedin.com/in/elise-withers-14253843/",
+      "confidence": "high"
+    }
+  }
+]
