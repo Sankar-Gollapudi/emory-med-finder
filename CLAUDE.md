@@ -30,12 +30,18 @@ For each school listed above, use WebSearch and WebFetch to find Emory Universit
 - Must have a verifiable web presence (LinkedIn, university page, news article)
 - Use their FULL LEGAL NAME (not initials or nicknames)
 - Skip anyone already in the existing contacts list
+- STRONGLY PREFER recent graduates and current students (Emory class of 2018-2026, currently in med school or recently matched into residency)
+- Faculty and attendings who graduated Emory 10+ years ago are LOWER PRIORITY — only include them if you can't find current students
 
-Search strategies:
-- LinkedIn: "Emory University" + "[med school name]"
-- Google: "Emory alumni" + "[med school name]" + "MD" or "medical student"
-- University alumni directories, Match Day announcements, student profiles
-- Research lab member pages, residency match lists
+Search strategies (prioritize recent sources):
+- LinkedIn: "Emory University" + "[med school name]" + "MD candidate" or "medical student"
+- Match Day announcements from the last 3 years (2024, 2025, 2026) — these list students by name and where they matched
+- Google: "Emory" + "[med school name]" + "class of 2025" or "class of 2026" or "class of 2027" or "class of 2028"
+- Medical school class profile pages and student directories
+- Emory pre-med advising spotlights and Emory alumni magazine features on recent grads
+- AMCAS/residency match result PDFs (e.g. "VUSM_Class of 2026 Match Results")
+- Student org pages, research lab member lists that show current trainees
+- Emory Wheel (student newspaper) articles about students accepted to med school
 
 ### Step 3: Save results and import
 
