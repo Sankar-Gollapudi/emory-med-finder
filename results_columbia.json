@@ -1,0 +1,21 @@
+[
+  {
+    "company_name": "Columbia University Vagelos College of Physicians and Surgeons",
+    "domain": "vagelos.columbia.edu",
+    "industry": "Medical Education",
+    "size": "1001-5000",
+    "city": "New York",
+    "state": "NY",
+    "suggested_title": "Amber Gonzalez - MD Candidate at Columbia VP&S",
+    "prospect_notes": "Amber Gonzalez is an MD Candidate at Columbia University Vagelos College of Physicians and Surgeons (Class of 2026 or 2027). She completed her undergraduate studies at Emory University, where she worked as a Teaching Assistant for General Biology 141 under Dr. Abreu, participated in groups supporting minority pre-medical students, and conducted neuroscience research in the Laboratory of Darwinian Neuroscience under Dr. James Rilling. She co-authored a 2021 study in Proceedings of the Royal Society B on grandmaternal brain function ('The neural correlates of grandmaternal caregiving'). She also worked as a Pulmonary Research Assistant under Dr. Segal studying bacterial microbiome in lung diseases including Bronchiectasis and NTM. Her medical interests span neuroscience, cardiology, and surgery. She participated in a study abroad program in Siena, Italy, studying Biochemistry and Bioethics.",
+    "_enrichment": {
+      "found": true,
+      "first_name": "Amber",
+      "last_name": "Gonzalez",
+      "title": "MD Candidate",
+      "email": "",
+      "source_url": "https://www.linkedin.com/in/amber-gonzalez-237708168/",
+      "confidence": "medium"
+    }
+  }
+]
