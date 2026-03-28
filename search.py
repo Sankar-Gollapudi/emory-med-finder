@@ -241,6 +241,20 @@ def get_school_coverage(db_path: str) -> dict[str, int]:
     return {r[0]: r[1] for r in rows}
 
 
+VERTICAL_TO_DB_KEYWORDS = {
+    "Harvard Medical School Emory alumni": ["harvard"],
+    "Columbia Vagelos College of Physicians Emory alumni": ["columbia", "vagelos"],
+    "Penn Perelman School of Medicine Emory alumni": ["penn", "perelman", "pennsylvania"],
+    "Johns Hopkins School of Medicine Emory alumni": ["johns hopkins", "hopkins"],
+    "Stanford School of Medicine Emory alumni": ["stanford"],
+    "Yale School of Medicine Emory alumni": ["yale"],
+    "UCSF School of Medicine Emory alumni": ["ucsf"],
+    "Duke School of Medicine Emory alumni": ["duke"],
+    "WashU School of Medicine Emory alumni": ["washu", "washington university", "wustl"],
+    "Cornell Weill Medical College Emory alumni": ["cornell", "weill"],
+}
+
+
 def pick_verticals_for_run(db_path: str, count: int = 3) -> list[str]:
     """Pick the least-covered schools to search this run."""
     coverage = get_school_coverage(db_path)
@@ -248,9 +262,9 @@ def pick_verticals_for_run(db_path: str, count: int = 3) -> list[str]:
     # Score each vertical: lower coverage = higher priority
     scored = []
     for vertical in SEARCH_VERTICALS:
-        # Match vertical to company name (e.g. "Harvard Medical School Emory alumni" -> "Harvard")
-        school_keyword = vertical.split(" Emory")[0].strip()
-        hits = sum(v for k, v in coverage.items() if school_keyword.split()[0].lower() in k.lower())
+        keywords = VERTICAL_TO_DB_KEYWORDS.get(vertical, [vertical.split(" Emory")[0].split()[0].lower()])
+        hits = sum(v for k, v in coverage.items()
+                   if any(kw in k.lower() for kw in keywords))
         scored.append((hits, vertical))
 
     # Sort by coverage (ascending) — least covered schools first
