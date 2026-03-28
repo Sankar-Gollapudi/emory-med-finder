@@ -351,7 +351,7 @@ def import_leads(leads: list[dict], db_path: str) -> tuple[int, int, int, list[s
         source = enrichment.get("source_url", enrichment.get("source", ""))
         confidence = enrichment.get("confidence", "low")
 
-        # Global name dedup — the core protection against duplicates
+        # Global name dedup — the core protection against duplicates across runs
         existing = conn.execute(
             "SELECT id FROM contacts WHERE first_name = ? AND last_name = ?",
             (first_name, last_name),
@@ -397,15 +397,19 @@ def import_leads(leads: list[dict], db_path: str) -> tuple[int, int, int, list[s
         elif confidence == "low":
             title = f"[Unverified] {title}"
 
-        conn.execute(
-            """INSERT INTO contacts (first_name, last_name, email, job_title,
-               lifecycle_stage, prospect_notes, source_url, company_id)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
-            (first_name, last_name, email, title,
-             "verified" if is_verified else "lead",
-             prospect_notes, source, company_id),
-        )
-        imported += 1
+        try:
+            conn.execute(
+                """INSERT INTO contacts (first_name, last_name, email, job_title,
+                   lifecycle_stage, prospect_notes, source_url, company_id)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+                (first_name, last_name, email, title,
+                 "verified" if is_verified else "lead",
+                 prospect_notes, source, company_id),
+            )
+            imported += 1
+        except sqlite3.IntegrityError:
+            # UNIQUE INDEX caught a duplicate that slipped past the query check
+            skipped += 1
 
     conn.commit()
     conn.close()
@@ -545,6 +549,28 @@ def main():
     print(f"Imported: {imported}")
     print(f"Skipped (duplicates): {skipped}")
     print(f"Rejected: {rejected}")
+
+    # Commit and push the updated DB so results persist across scheduled runs
+    if imported > 0 and not args.dry_run:
+        _commit_and_push(args.db_path, imported)
+
+
+def _commit_and_push(db_path: str, imported: int):
+    """Commit the updated database and push to origin."""
+    try:
+        subprocess.run(["git", "add", db_path], check=True, capture_output=True)
+        msg = f"Add {imported} new Emory med school leads"
+        subprocess.run(
+            ["git", "commit", "-m", msg],
+            check=True, capture_output=True,
+        )
+        subprocess.run(
+            ["git", "push"],
+            check=True, capture_output=True,
+        )
+        logger.info("Pushed updated DB to GitHub (%d new leads)", imported)
+    except subprocess.CalledProcessError as e:
+        logger.warning("Git push failed: %s", e.stderr.decode()[:200] if e.stderr else str(e))
 
 
 if __name__ == "__main__":
