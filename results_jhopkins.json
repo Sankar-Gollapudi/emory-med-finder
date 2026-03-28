@@ -1,0 +1,21 @@
+[
+  {
+    "company_name": "Johns Hopkins School of Medicine",
+    "domain": "hopkinsmedicine.org",
+    "industry": "Medical Education",
+    "size": "1001-5000",
+    "city": "Baltimore",
+    "state": "MD",
+    "suggested_title": "Ria Gupta - MD/MBA Candidate at Johns Hopkins School of Medicine",
+    "prospect_notes": "Ria Gupta is an MD/MBA Candidate at The Johns Hopkins University School of Medicine (2022-2027), aspiring to become a pediatric interventional cardiologist. She graduated from Emory University in May 2022 with honors, majoring in Biology and Women's, Gender, and Sexuality Studies, and received the Henry Bowden Merit Scholarship. At Emory, she joined the Burke Cardiomyopathy Lab in 2019 where she developed her interest in cardiovascular disease through patient encounters as a first responder. She is originally from Houston, Texas. Her concurrent MBA track reflects strong interests in healthcare leadership and business alongside clinical training.",
+    "_enrichment": {
+      "found": true,
+      "first_name": "Ria",
+      "last_name": "Gupta",
+      "title": "MD/MBA Candidate, Johns Hopkins School of Medicine",
+      "email": "",
+      "source_url": "https://www.linkedin.com/in/riaguptamdmba/",
+      "confidence": "high"
+    }
+  }
+]
