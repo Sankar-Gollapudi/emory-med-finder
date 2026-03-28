@@ -183,6 +183,36 @@ class TestImportLeads:
         assert skipped2 == 1  # deduped by name
 
 
+class TestExistingNameExclusion:
+    def test_get_existing_names_from_populated_db(self, db_path, sample_leads, sample_verifications):
+        for i, lead in enumerate(sample_leads):
+            lead["_enrichment"] = sample_verifications[i]
+        search.import_leads(sample_leads, db_path)
+
+        names = search.get_existing_names(db_path)
+        assert len(names) == 2
+        assert "John Smith" in names
+        assert "Jane Doe" in names
+
+    def test_get_existing_names_empty_db(self, db_path):
+        names = search.get_existing_names(db_path)
+        assert names == []
+
+    def test_get_existing_names_no_db(self, tmp_path):
+        names = search.get_existing_names(str(tmp_path / "nonexistent.db"))
+        assert names == []
+
+    def test_exclusion_block_in_prompt(self):
+        prompt = search.build_discovery_prompt("Harvard", 5, existing_names=["John Smith", "Jane Doe"])
+        assert "John Smith" in prompt
+        assert "Jane Doe" in prompt
+        assert "DO NOT INCLUDE" in prompt
+
+    def test_no_exclusion_block_when_empty(self):
+        prompt = search.build_discovery_prompt("Harvard", 5, existing_names=[])
+        assert "DO NOT INCLUDE" not in prompt
+
+
 class TestParseJson:
     def test_plain_json_array(self):
         result = search.parse_json_from_text('[{"key": "val"}]')

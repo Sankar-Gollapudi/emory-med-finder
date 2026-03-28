@@ -217,7 +217,29 @@ CRITICAL RULES — THESE ARE HARD GATES:
 You output structured JSON for CRM import."""
 
 
-def build_discovery_prompt(industry_group: str, num_leads: int, region: str = "United States") -> str:
+def get_existing_names(db_path: str) -> list[str]:
+    """Load all existing contact names from the DB for exclusion."""
+    import sqlite3
+    if not os.path.exists(db_path):
+        return []
+    conn = sqlite3.connect(db_path)
+    rows = conn.execute("SELECT first_name, last_name FROM contacts").fetchall()
+    conn.close()
+    return [f"{r[0]} {r[1]}" for r in rows]
+
+
+def build_discovery_prompt(industry_group: str, num_leads: int, region: str = "United States",
+                           existing_names: list[str] | None = None) -> str:
+    exclusion_block = ""
+    if existing_names:
+        names_list = ", ".join(existing_names)
+        exclusion_block = f"""
+
+ALREADY FOUND — DO NOT INCLUDE THESE PEOPLE (we already have them in our database):
+{names_list}
+
+You MUST find DIFFERENT people. If your search returns any of the above names, skip them and keep searching for new individuals."""
+
     return f"""Research and find {num_leads} REAL, VERIFIED individuals/organizations matching this category: {industry_group}
 Region/scope: {region}
 
@@ -226,6 +248,7 @@ Details: {DETAILS}
 
 QUALIFICATION CRITERIA — HARD REQUIREMENTS (every result MUST meet ALL of these):
 {QUALIFICATION}
+{exclusion_block}
 
 SEARCH STRATEGY:
 - Search LinkedIn for specific people matching the criteria
@@ -233,6 +256,7 @@ SEARCH STRATEGY:
 - Search Google for "{industry_group}" with relevant keywords
 - Cross-reference multiple sources to verify each result
 - Only include results where you found concrete evidence
+- Try DIFFERENT search queries than obvious ones — dig deeper into class profiles, student org pages, research lab member lists, residency match announcements
 
 For each result, the company_name field should be the ORGANIZATION/INSTITUTION name (e.g. the medical school).
 The suggested_title should describe the PERSON's role or status, using their FULL LEGAL NAME (e.g. "Jerry William Allen" not "J.W. Allen", "Robert Smith" not "Rob Smith"). Never use initials or abbreviations for names.
@@ -425,6 +449,11 @@ def run_search(num_leads: int = 10, max_workers: int = 4, db_path: str = "emory_
 
     logger.info("Starting Emory med school search: %d leads, %d workers", num_leads, max_workers)
 
+    # Load existing contacts so we can tell Claude to skip them
+    existing_names = get_existing_names(db_path)
+    if existing_names:
+        logger.info("Excluding %d existing contacts from search", len(existing_names))
+
     # Phase 1: Parallel Discovery
     num_workers = min(max_workers, MAX_WORKERS, len(SEARCH_VERTICALS))
     leads_per_worker = max(2, (num_leads + num_workers - 1) // num_workers)
@@ -452,7 +481,7 @@ def run_search(num_leads: int = 10, max_workers: int = 4, db_path: str = "emory_
     with ThreadPoolExecutor(max_workers=num_workers) as pool:
         futures = {}
         for group in groups:
-            prompt = build_discovery_prompt(group, leads_per_worker, region)
+            prompt = build_discovery_prompt(group, leads_per_worker, region, existing_names)
             future = pool.submit(call_claude, discovery_system, prompt, 300)
             futures[future] = group
 
