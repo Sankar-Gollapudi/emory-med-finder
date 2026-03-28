@@ -14,6 +14,14 @@ GITHUB_DB = Path(__file__).parent / "emory_med.db"
 PROSPECT_DB = Path("/home/ubuntu/apps/prospect_engine/backend/profiles/emory_to_med_school.db")
 
 
+def row_get(row, key, default=None):
+    """Safe .get() for sqlite3.Row objects."""
+    try:
+        return row[key]
+    except (IndexError, KeyError):
+        return default
+
+
 def merge(github_db: Path = GITHUB_DB, prospect_db: Path = PROSPECT_DB):
     if not github_db.exists():
         print(f"Source DB not found: {github_db}")
@@ -53,7 +61,7 @@ def merge(github_db: Path = GITHUB_DB, prospect_db: Path = PROSPECT_DB):
             cursor = dst.execute(
                 """INSERT INTO companies (name, domain, industry, size, state, created_at, updated_at)
                    VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)""",
-                (sc["name"], sc["domain"], sc["industry"], sc["size"], sc["state"] if "state" in sc.keys() else None, sc["created_at"]),
+                (sc["name"], sc["domain"], sc["industry"], sc["size"], row_get(sc, "state"), sc["created_at"]),
             )
             company_map[sc["id"]] = cursor.lastrowid
             companies_added += 1
@@ -79,10 +87,10 @@ def merge(github_db: Path = GITHUB_DB, prospect_db: Path = PROSPECT_DB):
             ).fetchone()
             updates = {}
             for field in ("job_title", "prospect_notes"):
-                if not target[field] and ct.get(field):
+                if not target[field] and row_get(ct,field):
                     updates[field] = ct[field]
             # Upgrade lifecycle_stage from lead to verified
-            if target["lifecycle_stage"] == "lead" and ct.get("lifecycle_stage") == "verified":
+            if target["lifecycle_stage"] == "lead" and row_get(ct,"lifecycle_stage") == "verified":
                 updates["lifecycle_stage"] = "verified"
             if updates:
                 set_clause = ", ".join(f"{k} = ?" for k in updates)
@@ -105,8 +113,8 @@ def merge(github_db: Path = GITHUB_DB, prospect_db: Path = PROSPECT_DB):
                 """INSERT INTO contacts (first_name, last_name, email, job_title,
                    lifecycle_stage, prospect_notes, company_id, created_at, updated_at)
                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)""",
-                (ct["first_name"], ct["last_name"], ct["email"], ct.get("job_title"),
-                 ct.get("lifecycle_stage", "lead"), ct.get("prospect_notes"),
+                (ct["first_name"], ct["last_name"], ct["email"], row_get(ct,"job_title"),
+                 row_get(ct,"lifecycle_stage", "lead"), row_get(ct,"prospect_notes"),
                  dst_company_id, ct["created_at"]),
             )
             contacts_added += 1
