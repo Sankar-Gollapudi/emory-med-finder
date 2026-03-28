@@ -27,7 +27,7 @@ for v in verticals: print(f'  - {v}')
 For each school listed above, use WebSearch and WebFetch to find Emory University undergraduate alumni who went to that medical school. Requirements:
 - Must be a verified Emory University UNDERGRADUATE alumnus (not grad school)
 - Must be at a top-20 US medical school
-- Must have a verifiable web presence (LinkedIn, university page, news article)
+- Must have a verifiable web presence — STRONGLY prefer LinkedIn profile URLs over department pages or news articles (LinkedIn URLs are stable, department pages go stale)
 - Use their FULL LEGAL NAME (not initials or nicknames)
 - Skip anyone already in the existing contacts list
 - STRONGLY PREFER recent graduates and current students (Emory class of 2018-2026, currently in med school or recently matched into residency)
