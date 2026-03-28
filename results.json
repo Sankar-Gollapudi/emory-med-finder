@@ -1,20 +1,20 @@
 [
   {
-    "company_name": "UCSF School of Medicine",
-    "domain": "medschool.ucsf.edu",
+    "company_name": "Harvard Medical School",
+    "domain": "hms.harvard.edu",
     "industry": "Medical Education",
     "size": "1001-5000",
-    "city": "San Francisco",
-    "state": "CA",
-    "suggested_title": "Akash Shanmugam - MS1, UCSF School of Medicine",
-    "prospect_notes": "Akash Shanmugam attended Oxford College of Emory University and Emory College as an undergraduate, majoring in Neuroscience and Behavioral Biology (class of approximately 2023). He is a Bay Area native originally from Santa Clara, CA. He is now a first-year medical student (MS1, class of 2028) at UCSF School of Medicine. He is affiliated with the UCSF Department of Anesthesia, working in both the Pain Neuromodulation Lab and the AI Clinical Innovation Lab. In March 2025, he co-presented research on leveraging a targeted LLM approach for understanding predictors of post-surgical pain from clinical text. During his time at Emory, he was involved in community health initiatives including vaccine outreach events partnering with the Helping Hands Outreach Clinic.",
+    "city": "Boston",
+    "state": "MA",
+    "suggested_title": "Alisa Sivapiromrat - MD Candidate at Harvard Medical School",
+    "prospect_notes": "Alisa (Ally) Sivapiromrat is an MD candidate in the Pathways program at Harvard Medical School (approximately Class of 2028 or 2029). She graduated from Emory University in 2023 with a B.S. in Biology, where she conducted cystic fibrosis clinical research under Dr. Vin Tangpricha and studied abroad at the University of Oxford focusing on biomedical sciences and biochemistry. After Emory, she spent two years as a Post-baccalaureate CRTA Fellow at the National Cancer Institute (Thoracic and GI Malignancies Branch) under Dr. Arun Rajan, characterizing thymic adenocarcinoma and supporting clinical trials for rare thymic cancers. She is also a participant in the HMS Global Primary Care Student Scholars program, reflecting an interest in primary care and global health. Her research background spans cystic fibrosis, thoracic oncology, and clinical immunotherapy trials.",
     "_enrichment": {
       "found": true,
-      "first_name": "Akash",
-      "last_name": "Shanmugam",
-      "title": "MS1 at UCSF School of Medicine",
+      "first_name": "Alisa",
+      "last_name": "Sivapiromrat",
+      "title": "MD Candidate, Harvard Medical School Pathways Program",
       "email": "",
-      "source_url": "https://www.linkedin.com/in/akash-shanmugam/",
+      "source_url": "https://globalprograms.hms.harvard.edu/global-primary-health-care/global-primary-care-student-scholars",
       "confidence": "high"
     }
   }
