@@ -1,0 +1,21 @@
+[
+  {
+    "company_name": "Johns Hopkins School of Medicine",
+    "domain": "hopkinsmedicine.org",
+    "industry": "Medical Education",
+    "size": "1001-5000",
+    "city": "Baltimore",
+    "state": "MD",
+    "suggested_title": "Helena Baffoe-Bonnie - Internal Medicine Resident at Johns Hopkins Osler",
+    "prospect_notes": "Helena Baffoe-Bonnie graduated from Emory University with a degree in Biology and a Global Development Studies minor, conducting honors thesis research in the Gibson Lab (graduating summa cum laude, 2017-2018). After Emory she worked as an IRTA Fellow at the NIH NIDA before attending Cleveland Clinic Lerner College of Medicine (Case Western Reserve University). She matched into the Johns Hopkins Osler Internal Medicine Residency (Longcope Firm) on Match Day 2025, posting her excitement on X: 'Overflowing with gratitude—thrilled to be heading to Johns Hopkins @OslerResidency for Internal Medicine!' Her clinical interests include Cardiology and Global Health, reflecting her interdisciplinary Emory undergraduate background. She is part of the Case Western World Medicine Pathway program and has a strong research and global health foundation from her Emory and NIH years.",
+    "_enrichment": {
+      "found": true,
+      "first_name": "Helena",
+      "last_name": "Baffoe-Bonnie",
+      "title": "Internal Medicine Resident, Johns Hopkins Osler (Longcope Firm)",
+      "email": "",
+      "source_url": "https://www.linkedin.com/in/helena-baffoe-bonnie",
+      "confidence": "high"
+    }
+  }
+]
