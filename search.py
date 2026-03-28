@@ -228,6 +228,46 @@ def get_existing_names(db_path: str) -> list[str]:
     return [f"{r[0]} {r[1]}" for r in rows]
 
 
+def get_school_coverage(db_path: str) -> dict[str, int]:
+    """Count how many contacts we have per medical school (company)."""
+    import sqlite3
+    if not os.path.exists(db_path):
+        return {}
+    conn = sqlite3.connect(db_path)
+    rows = conn.execute(
+        "SELECT c.name, COUNT(ct.id) FROM companies c LEFT JOIN contacts ct ON ct.company_id = c.id GROUP BY c.id"
+    ).fetchall()
+    conn.close()
+    return {r[0]: r[1] for r in rows}
+
+
+def pick_verticals_for_run(db_path: str, count: int = 3) -> list[str]:
+    """Pick the least-covered schools to search this run."""
+    coverage = get_school_coverage(db_path)
+
+    # Score each vertical: lower coverage = higher priority
+    scored = []
+    for vertical in SEARCH_VERTICALS:
+        # Match vertical to company name (e.g. "Harvard Medical School Emory alumni" -> "Harvard")
+        school_keyword = vertical.split(" Emory")[0].strip()
+        hits = sum(v for k, v in coverage.items() if school_keyword.split()[0].lower() in k.lower())
+        scored.append((hits, vertical))
+
+    # Sort by coverage (ascending) — least covered schools first
+    scored.sort(key=lambda x: x[0])
+    picked = [v for _, v in scored[:count]]
+
+    # If all schools have some coverage, also add creative search angles
+    if scored and scored[0][0] > 0:
+        picked.append(
+            "Emory University pre-med alumni who matched into top medical schools — "
+            "search Match Day announcements, Emory alumni magazine, Emory pre-med advising spotlights, "
+            "student newspaper profiles, and department newsletters"
+        )
+
+    return picked
+
+
 def build_discovery_prompt(industry_group: str, num_leads: int, region: str = "United States",
                            existing_names: list[str] | None = None) -> str:
     exclusion_block = ""
@@ -454,47 +494,33 @@ def run_search(num_leads: int = 10, max_workers: int = 4, db_path: str = "emory_
     if existing_names:
         logger.info("Excluding %d existing contacts from search", len(existing_names))
 
-    # Phase 1: Parallel Discovery
-    num_workers = min(max_workers, MAX_WORKERS, len(SEARCH_VERTICALS))
-    leads_per_worker = max(2, (num_leads + num_workers - 1) // num_workers)
-
-    groups = []
-    verticals_hint = ", ".join(SEARCH_VERTICALS)
-    for w in range(num_workers):
-        if w == 0:
-            groups.append(f"batch 1 — search broadly across: {verticals_hint}")
-        else:
-            groups.append(
-                f"batch {w + 1} — find DIFFERENT people than previous batches, "
-                f"use different search queries and sources. Targets: {verticals_hint}"
-            )
+    # Pick the least-covered schools to focus this run
+    verticals = pick_verticals_for_run(db_path, count=min(max_workers, 3))
+    leads_per_vertical = max(3, (num_leads + len(verticals) - 1) // len(verticals))
 
     discovery_system = build_discovery_system_prompt()
     all_leads = []
 
-    logger.info("Phase 1: Discovery — %d workers, %d leads each", len(groups), leads_per_worker)
+    logger.info("Phase 1: Discovery — %d schools, %d leads each", len(verticals), leads_per_vertical)
+    for v in verticals:
+        logger.info("  Targeting: %s", v[:80])
 
     if dry_run:
         logger.info("DRY RUN — skipping Claude CLI calls")
         return 0, 0, 0
 
-    with ThreadPoolExecutor(max_workers=num_workers) as pool:
-        futures = {}
-        for group in groups:
-            prompt = build_discovery_prompt(group, leads_per_worker, region, existing_names)
-            future = pool.submit(call_claude, discovery_system, prompt, 300)
-            futures[future] = group
-
-        for future in as_completed(futures):
-            group = futures[future]
-            result = future.result()
-            if not result["ok"]:
-                logger.warning("Discovery failed for %s: %s", group, result["error"])
-                continue
-            parsed = parse_json_from_text(result["result"])
-            if isinstance(parsed, list):
-                all_leads.extend(parsed)
-                logger.info("Got %d leads from '%s'", len(parsed), group[:60])
+    # Run sequentially — avoids timeout issues in cloud environments
+    for vertical in verticals:
+        prompt = build_discovery_prompt(vertical, leads_per_vertical, region, existing_names)
+        logger.info("Searching: %s", vertical[:60])
+        result = call_claude(discovery_system, prompt, 600)
+        if not result["ok"]:
+            logger.warning("Discovery failed for %s: %s", vertical[:60], result["error"])
+            continue
+        parsed = parse_json_from_text(result["result"])
+        if isinstance(parsed, list):
+            all_leads.extend(parsed)
+            logger.info("Got %d leads from '%s'", len(parsed), vertical[:60])
 
     if not all_leads:
         logger.error("No leads found from any worker")
@@ -506,41 +532,35 @@ def run_search(num_leads: int = 10, max_workers: int = 4, db_path: str = "emory_
         unique_leads = unique_leads[:num_leads]
     logger.info("Phase 1 complete: %d unique leads (from %d raw)", len(unique_leads), len(all_leads))
 
-    # Phase 2: Parallel Verification
+    # Phase 2: Verification (sequential to avoid cloud timeouts)
     logger.info("Phase 2: Verifying %d people...", len(unique_leads))
 
-    with ThreadPoolExecutor(max_workers=num_workers) as pool:
-        futures = {}
-        for i, lead in enumerate(unique_leads):
-            title = lead.get("suggested_title", "")
-            org = lead.get("company_name", "")
-            notes = lead.get("prospect_notes", "")
-            prompt = build_verify_prompt(title, org, notes)
-            future = pool.submit(call_claude, VERIFY_SYSTEM, prompt, 60)
-            futures[future] = i
-
-        verified = 0
-        failed = 0
-        for future in as_completed(futures):
-            idx = futures[future]
-            result = future.result()
-            if result["ok"]:
-                parsed = parse_json_from_text(result["result"])
-                if isinstance(parsed, dict) and parsed.get("found"):
-                    unique_leads[idx]["_enrichment"] = {
-                        "found": True,
-                        "first_name": parsed.get("first_name", ""),
-                        "last_name": parsed.get("last_name", ""),
-                        "title": parsed.get("title", ""),
-                        "email": "",
-                        "source_url": parsed.get("source_url", ""),
-                        "confidence": parsed.get("confidence", "medium"),
-                    }
-                    verified += 1
-                else:
-                    failed += 1
+    verified = 0
+    failed = 0
+    for i, lead in enumerate(unique_leads):
+        title = lead.get("suggested_title", "")
+        org = lead.get("company_name", "")
+        notes = lead.get("prospect_notes", "")
+        prompt = build_verify_prompt(title, org, notes)
+        logger.info("Verifying %d/%d: %s", i + 1, len(unique_leads), title[:50])
+        result = call_claude(VERIFY_SYSTEM, prompt, 120)
+        if result["ok"]:
+            parsed = parse_json_from_text(result["result"])
+            if isinstance(parsed, dict) and parsed.get("found"):
+                unique_leads[i]["_enrichment"] = {
+                    "found": True,
+                    "first_name": parsed.get("first_name", ""),
+                    "last_name": parsed.get("last_name", ""),
+                    "title": parsed.get("title", ""),
+                    "email": "",
+                    "source_url": parsed.get("source_url", ""),
+                    "confidence": parsed.get("confidence", "medium"),
+                }
+                verified += 1
             else:
                 failed += 1
+        else:
+            failed += 1
 
     logger.info("Phase 2 complete: %d verified, %d failed", verified, failed)
 
