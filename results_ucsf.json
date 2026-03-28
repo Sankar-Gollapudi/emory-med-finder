@@ -1,0 +1,40 @@
+[
+  {
+    "company_name": "UCSF School of Medicine",
+    "domain": "medicine.ucsf.edu",
+    "industry": "Medical Education",
+    "size": "1001-5000",
+    "city": "San Francisco",
+    "state": "CA",
+    "suggested_title": "Reem Al-Atassi - Family Medicine Resident (2021-2024)",
+    "prospect_notes": "Reem Al-Atassi is an Emory University undergraduate alumna (double major in Biology and English-Creative Writing) who also attended Emory School of Medicine, earning her MD in 2021. She completed a Family Medicine residency at UCSF, graduating in 2024 as part of the UCSF Family and Community Medicine program. She is passionate about serving underserved communities, which aligns with UCSF's mission-driven Family Medicine training. After completing her residency, she joined UPMC Pittsburgh. She is verified on Doximity as an MD with family medicine training.",
+    "_enrichment": {
+      "found": true,
+      "first_name": "Reem",
+      "last_name": "Al-Atassi",
+      "title": "Family Medicine Physician (former UCSF Resident, graduated 2024)",
+      "email": "",
+      "source_url": "https://www.doximity.com/pub/reem-al-atassi-md",
+      "confidence": "high"
+    }
+  },
+  {
+    "company_name": "UCSF School of Medicine",
+    "domain": "medicine.ucsf.edu",
+    "industry": "Medical Education",
+    "size": "1001-5000",
+    "city": "San Francisco",
+    "state": "CA",
+    "suggested_title": "Madison Malone - Internal Medicine Chief Resident (2023-2024)",
+    "prospect_notes": "Madison Malone is an Emory University undergraduate alumna who also completed her MD at Emory School of Medicine. She matched into UCSF's Internal Medicine residency program and was selected as a Chief Medical Resident for the 2023-2024 academic year, a highly competitive role recognizing clinical excellence and leadership. Her UCSF Profiles page and Doximity listing confirm her training and role. Chief residents at UCSF typically serve as faculty liaisons, curriculum leaders, and mentors to junior residents. She represents a strong Emory-to-UCSF pipeline connection.",
+    "_enrichment": {
+      "found": true,
+      "first_name": "Madison",
+      "last_name": "Malone",
+      "title": "Internal Medicine Chief Medical Resident, UCSF (2023-2024)",
+      "email": "",
+      "source_url": "https://profiles.ucsf.edu/madison.malone",
+      "confidence": "high"
+    }
+  }
+]
