@@ -1,21 +1,59 @@
 [
   {
-    "company_name": "Harvard Medical School",
-    "domain": "hms.harvard.edu",
+    "company_name": "UC San Diego School of Medicine",
+    "domain": "medschool.ucsd.edu",
     "industry": "Medical Education",
     "size": "1001-5000",
-    "city": "Boston",
-    "state": "MA",
-    "suggested_title": "Alisa Sivapiromrat - MD Candidate at Harvard Medical School",
-    "prospect_notes": "Alisa (Ally) Sivapiromrat is an MD candidate in the Pathways program at Harvard Medical School (approximately Class of 2028 or 2029). She graduated from Emory University in 2023 with a B.S. in Biology, where she conducted cystic fibrosis clinical research under Dr. Vin Tangpricha and studied abroad at the University of Oxford focusing on biomedical sciences and biochemistry. After Emory, she spent two years as a Post-baccalaureate CRTA Fellow at the National Cancer Institute (Thoracic and GI Malignancies Branch) under Dr. Arun Rajan, characterizing thymic adenocarcinoma and supporting clinical trials for rare thymic cancers. She is also a participant in the HMS Global Primary Care Student Scholars program, reflecting an interest in primary care and global health. Her research background spans cystic fibrosis, thoracic oncology, and clinical immunotherapy trials.",
+    "city": "La Jolla",
+    "state": "CA",
+    "suggested_title": "Sriram Ambadi - MD Candidate (Class of 2029) at UC San Diego School of Medicine",
+    "prospect_notes": "Sriram Ambadi graduated from Emory University in 2025 (Class of 2025) with a degree in Anthropology and Human Biology. He was named to Emory's 100 Senior Honorary — a distinction for outstanding emerging alumni leaders — and the Dean's List. He also earned the Gold President's Volunteer Service Award for 270+ hours with BreakTheOutbreak. He is now a first-year medical student (Class of 2029) at UC San Diego School of Medicine, where he has been featured in a UCSD photo essay on compassionate medicine, discussing his service-oriented philosophy. His path reflects a strong commitment to health equity and patient-centered care rooted in his Emory undergraduate experience.",
     "_enrichment": {
       "found": true,
-      "first_name": "Alisa",
-      "last_name": "Sivapiromrat",
-      "title": "MD Candidate, Harvard Medical School Pathways Program",
+      "first_name": "Sriram",
+      "last_name": "Ambadi",
+      "title": "MD Candidate, Class of 2029",
       "email": "",
-      "source_url": "https://globalprograms.hms.harvard.edu/global-primary-health-care/global-primary-care-student-scholars",
+      "source_url": "https://www.linkedin.com/in/sriramambadi/",
       "confidence": "high"
+    }
+  },
+  {
+    "company_name": "Vanderbilt University School of Medicine",
+    "domain": "medschool.vanderbilt.edu",
+    "industry": "Medical Education",
+    "size": "1001-5000",
+    "city": "Nashville",
+    "state": "TN",
+    "suggested_title": "Annie Shen - MD Candidate (Class of 2027) at Vanderbilt University School of Medicine",
+    "prospect_notes": "Annie Shen grew up in Richland, WA and graduated from Emory University with a double major in Chemistry and Anthropology and Human Biology. After graduating, she spent a gap year at the NIH conducting immunology research before matriculating to Vanderbilt University School of Medicine. She is currently a second-year medical student (VMS2, Class of 2027) and is involved in VUSM Ambassadors, Wilderness Medicine, Shade Tree Clinic, Association of Women's Surgeons, and SMC mentorship. She serves on the student planning team for Vanderbilt's Second Look Weekend, helping admitted students evaluate the school. Her combination of basic science research at NIH and dual STEM and social science majors at Emory reflects a strong physician-scientist trajectory.",
+    "_enrichment": {
+      "found": true,
+      "first_name": "Annie",
+      "last_name": "Shen",
+      "title": "MD Candidate (VMS2), Class of 2027",
+      "email": "",
+      "source_url": "https://www.linkedin.com/in/annieshen",
+      "confidence": "high"
+    }
+  },
+  {
+    "company_name": "Mayo Clinic Alix School of Medicine",
+    "domain": "college.mayo.edu",
+    "industry": "Medical Education",
+    "size": "1001-5000",
+    "city": "Rochester",
+    "state": "MN",
+    "suggested_title": "Carolyn Zhou - MD Candidate at Mayo Clinic Alix School of Medicine",
+    "prospect_notes": "Carolyn Zhou is an Emory University alumna who is now a medical student at Mayo Clinic Alix School of Medicine, one of the most selective medical schools in the United States with a 2.1% acceptance rate. Her Instagram bio confirms she is an Emory alum attending Mayo Clinic School of Medicine. Prior to medical school she worked in clinical settings including radiology assistance and COVID-19 testing at Planned Parenthood Arizona, developing hands-on patient care experience. Mayo Clinic Alix School of Medicine is known for its research-oriented curriculum and early patient contact. Carolyn's acceptance to one of the nation's most selective medical programs reflects her strong academic and clinical record from Emory.",
+    "_enrichment": {
+      "found": true,
+      "first_name": "Carolyn",
+      "last_name": "Zhou",
+      "title": "MD Candidate",
+      "email": "",
+      "source_url": "https://www.linkedin.com/in/carolyn-zhou-966445156/",
+      "confidence": "medium"
     }
   }
 ]
