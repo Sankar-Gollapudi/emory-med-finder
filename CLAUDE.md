@@ -1,25 +1,84 @@
 # Emory Med School Finder
 
-Standalone CLI that finds Emory University undergrad alumni who went to top-20 US medical schools.
+Finds Emory University undergrad alumni who went to top-20 US medical schools.
 
-## How to run
+## For scheduled runs (YOU ARE THE SEARCH ENGINE)
 
+Do NOT run search.py — it uses subprocess calls that don't work in this environment.
+Instead, YOU do the searching directly using your WebSearch and WebFetch tools, then import results.
+
+### Step 1: Check what we need
+
+```bash
+python3 -c "
+from search import get_existing_names, get_school_coverage, pick_verticals_for_run
+names = get_existing_names('emory_med.db')
+print(f'Existing contacts: {len(names)}')
+for n in names: print(f'  - {n}')
+print()
+verticals = pick_verticals_for_run('emory_med.db', count=3)
+print('Schools to search this run:')
+for v in verticals: print(f'  - {v}')
+"
+```
+
+### Step 2: Search the web yourself
+
+For each school listed above, use WebSearch and WebFetch to find Emory University undergraduate alumni who went to that medical school. Requirements:
+- Must be a verified Emory University UNDERGRADUATE alumnus (not grad school)
+- Must be at a top-20 US medical school
+- Must have a verifiable web presence (LinkedIn, university page, news article)
+- Use their FULL LEGAL NAME (not initials or nicknames)
+- Skip anyone already in the existing contacts list
+
+Search strategies:
+- LinkedIn: "Emory University" + "[med school name]"
+- Google: "Emory alumni" + "[med school name]" + "MD" or "medical student"
+- University alumni directories, Match Day announcements, student profiles
+- Research lab member pages, residency match lists
+
+### Step 3: Save results and import
+
+Write results to a JSON file, then import:
+
+```bash
+cat > results.json << 'EOF'
+[
+  {
+    "company_name": "Medical School Name",
+    "domain": "medschool.edu",
+    "industry": "Medical Education",
+    "size": "1001-5000",
+    "city": "City",
+    "state": "ST",
+    "suggested_title": "Full Name - Role at Med School",
+    "prospect_notes": "4-6 sentences about their background, Emory undergrad details, med school details, research interests.",
+    "_enrichment": {
+      "found": true,
+      "first_name": "First",
+      "last_name": "Last",
+      "title": "Role at Med School",
+      "email": "",
+      "source_url": "https://linkedin.com/in/...",
+      "confidence": "high"
+    }
+  }
+]
+EOF
+python3 import_results.py results.json
+```
+
+The import script handles dedup (by first_name + last_name), validation, and auto git push.
+
+## For local/EC2 runs
+
+search.py still works locally where the claude CLI is available:
 ```bash
 python3 search.py --num-leads 10 --max-workers 4
 ```
 
-This runs a 3-phase pipeline:
-1. **Discovery** — parallel Claude CLI calls search the web for Emory→med school alumni
-2. **Verification** — each person is verified via a quick web search
-3. **Import** — verified leads are stored in `emory_med.db` with dedup by (first_name, last_name)
+## Database
 
-Results accumulate across runs. The UNIQUE INDEX on (first_name, last_name) prevents duplicates.
-
-## For scheduled runs
-
-The scheduled agent should run:
-```bash
-python3 search.py --num-leads 10
-```
-
-Results are printed to stdout at the end. The database is the source of truth.
+- `emory_med.db` — SQLite with `companies` and `contacts` tables
+- UNIQUE INDEX on contacts(first_name, last_name) prevents duplicates
+- Results accumulate across runs
