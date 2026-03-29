@@ -1,58 +1,20 @@
 [
   {
-    "company_name": "David Geffen School of Medicine at UCLA",
-    "domain": "medschool.ucla.edu",
+    "company_name": "NYU Grossman School of Medicine",
+    "domain": "med.nyu.edu",
     "industry": "Medical Education",
     "size": "1001-5000",
-    "city": "Los Angeles",
-    "state": "CA",
-    "suggested_title": "Julia Gensheimer - MD-PhD Candidate at UCLA-Caltech MSTP",
-    "prospect_notes": "Julia Gensheimer graduated summa cum laude from Emory University in 2019 with degrees in Chemistry and Biology, where she was a Jack Kent Cooke Foundation College Scholar and conducted undergraduate research in Dr. Rafi Ahmed's immunology lab at the Emory Vaccine Center studying exhausted CD8+ T cells in chronic viral infection. She joined the UCLA-Caltech Medical Scientist Training Program (MSTP) at the David Geffen School of Medicine, earning her PhD in Molecular Biology under Dr. Gay Crooks studying hematopoietic stem cell aging and T cell development via artificial thymic organoids. After completing her PhD, she re-entered the clinical curriculum and is currently in her clinical years at DGSOM UCLA, with expected MD completion around 2027-2028. She was funded by NIA Kirschstein NRSA F30 and Tumor Cell Biology T32 grants, selected as a UC President's Fellow to attend the 72nd Lindau Nobel Laureate Meeting (2023), and is a Lothar-Anne Rosenthal Fellow. She is also founder of Med Mentors, a mentorship program connecting medical students with premedical students with chapters at UCLA and OHSU.",
+    "city": "New York",
+    "state": "NY",
+    "suggested_title": "Shreeja Patel - MD, NYU Grossman School of Medicine (now PGY1 General Surgery Resident)",
+    "prospect_notes": "Shreeja Patel completed her undergraduate education at Emory University, where she was a member of Phi Eta Sigma Freshman Honor Society, competed on the Emory Women's Club Water Polo team, served as a Pre-Health Advising Peer Mentor, and conducted clinical research at Emory University Hospital in the Department of Gynecology and Obstetrics maintaining a patient registry and biospecimen repository. She also completed a 10-week NSF-funded research internship at the NYU Kirshenbaum Chemistry Lab during her undergrad years. She attended NYU Grossman School of Medicine, where she was inducted into the Arnold P. Gold Foundation Gold Humanism Honor Society, and graduated as part of the match cycle around 2024. She matched into General Surgery and is now a PGY1 General Surgery Resident at NYU Langone Health.",
     "_enrichment": {
       "found": true,
-      "first_name": "Julia",
-      "last_name": "Gensheimer",
-      "title": "MD-PhD Candidate, UCLA-Caltech Medical Scientist Training Program",
+      "first_name": "Shreeja",
+      "last_name": "Patel",
+      "title": "MD, NYU Grossman (now PGY1 General Surgery Resident, NYU Langone)",
       "email": "",
-      "source_url": "https://www.linkedin.com/in/julia-gensheimer/",
-      "confidence": "high"
-    }
-  },
-  {
-    "company_name": "University of Pennsylvania Perelman School of Medicine",
-    "domain": "med.upenn.edu",
-    "industry": "Medical Education",
-    "size": "1001-5000",
-    "city": "Philadelphia",
-    "state": "PA",
-    "suggested_title": "Julie Wechsler - MD Candidate at Penn Perelman School of Medicine",
-    "prospect_notes": "Julie Wechsler grew up in Atlanta and attended Emory University, graduating in the class of 2021, where she served as co-president of a student organization from 2019 to 2021 and conducted undergraduate research at Emory's Nell Hodgson Woodruff School of Nursing and Rollins School of Public Health. She volunteered at Children's Healthcare of Atlanta during her undergraduate years. She is now an MD candidate at the University of Pennsylvania Perelman School of Medicine, one of the top medical schools in the country. Her background reflects a strong foundation in public health and clinical research cultivated during her time at Emory before transitioning to Penn Medicine for her medical training.",
-    "_enrichment": {
-      "found": true,
-      "first_name": "Julie",
-      "last_name": "Wechsler",
-      "title": "MD Candidate, Perelman School of Medicine",
-      "email": "",
-      "source_url": "https://www.linkedin.com/in/julie-wechsler-403a801a8/",
-      "confidence": "high"
-    }
-  },
-  {
-    "company_name": "David Geffen School of Medicine at UCLA",
-    "domain": "medschool.ucla.edu",
-    "industry": "Medical Education",
-    "size": "1001-5000",
-    "city": "Los Angeles",
-    "state": "CA",
-    "suggested_title": "Stephanie Pintas - MD 2023, David Geffen School of Medicine at UCLA",
-    "prospect_notes": "Stephanie Pintas completed her Bachelor of Arts in Human Health and Nutrition Science at Emory University in Atlanta before attending the David Geffen School of Medicine at UCLA, where she graduated with her MD in the class of 2023. At Emory she led healthy cooking demonstrations, researched botanical extracts for skin conditions, and served as an organic chemistry TA. At UCLA she was co-president of the Integrative Medicine Student Interest Group and conducted research at the Center for East-West Medicine. She received the Gerald S. Levey Leadership Award at graduation and matched into Internal Medicine at Brigham and Women's Hospital, where she is now a resident in the HVMA primary care and lifestyle medicine track.",
-    "_enrichment": {
-      "found": true,
-      "first_name": "Stephanie",
-      "last_name": "Pintas",
-      "title": "MD, Class of 2023 (now Internal Medicine Resident, Brigham and Women's Hospital)",
-      "email": "",
-      "source_url": "https://mdstudentsorgs.healthsciences.ucla.edu/people/stephanie-pintas-0",
+      "source_url": "https://www.linkedin.com/in/shreeja-patel-6a97a415b/",
       "confidence": "high"
     }
   }
