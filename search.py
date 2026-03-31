@@ -52,9 +52,19 @@ DETAILS = (
 
 QUALIFICATION = (
     "Must be a verified Emory University undergraduate alumnus/alumna who is currently "
-    "attending or graduated from a top-20 US medical school. Must have a LinkedIn "
-    "profile or other verifiable web presence confirming both Emory undergrad AND top "
-    "med school enrollment. Do not include Emory graduate school students — only undergrad."
+    "enrolled in or graduated from an MD or MD/PhD program at a top-20 US medical school. "
+    "PhD-only students are acceptable but HIGHEST PRIORITY is current or recently graduated MD/MD-PhD students. "
+    "CRITICAL: Residency does NOT count — if someone got their MD elsewhere and is only "
+    "at a top school for residency or fellowship, they do NOT qualify. You must verify "
+    "WHERE they earned their MD degree. "
+    "CRITICAL: You must CONFIRM Emory undergrad with concrete evidence (LinkedIn, directory, "
+    "article). Do not include someone just because they appear in a combined search — you need "
+    "a source that explicitly states they attended Emory for undergrad. "
+    "REQUIRE LinkedIn verification whenever possible — a university profile page alone is NOT enough "
+    "to confirm someone is an MD student (they could be staff, postdoc, or research associate). "
+    "LinkedIn shows their actual degree program. Without LinkedIn, need at least TWO other sources "
+    "confirming MD/MD-PhD enrollment (e.g. class roster + news article). "
+    "Do not include Emory graduate school students — only undergrad."
 )
 
 SEARCH_VERTICALS = [
